@@ -46,6 +46,11 @@ from fx_suite import FxEnsembleForecaster, FxTariffAnalyzer
 # =====================================================
 USE_DB_AUTH = False  # [OK] 기본: 데모 모드
 # USE_DB_AUTH = True  # [OK] DB 모드
+# DB 연결 정보는 환경변수로 덮어쓸 수 있게 노출
+DB_HOST = os.environ.get("DB_HOST", "192.168.2.186")
+DB_USER = os.environ.get("DB_USER", "shee")
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "1111")
+DB_NAME = os.environ.get("DB_NAME", "iljitech")
 
 # =========================
 # [PATH] 모듈 경로 강제 추가 (중요)
@@ -128,10 +133,10 @@ def _safe_int(value, default: int, *, min_value: Optional[int] = None, max_value
 
 def get_connection():
     return pymysql.connect(
-        host="192.168.2.186",
-        user="shee",
-        password="1111",
-        db="iljitech",
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        db=DB_NAME,
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
     )
