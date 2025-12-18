@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="icon" href="/favicon.ico"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#000000"/>
+  <meta name="description" content="Web site created using create-react-app"/>
+  <link rel="apple-touch-icon" href="/logo192.png"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <title>React App</title>
+  <script defer="defer" src="/static/js/main.879ee444.js"></script>
+  <link href="/static/css/main.66c67323.css" rel="stylesheet">
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script>
+  // Hide the "실시간 반영" toggle and keep it effectively ON.
+  (function () {
+    var targetText = "\uc2e4\uc2dc\uac04 \ubc18\uc601"; // "실시간 반영"
+
+    function hideRealtimeToggle() {
+      var nodes = document.querySelectorAll("div, section, label, span");
+      var hidden = false;
+      nodes.forEach(function (el) {
+        try {
+          if (el.textContent && el.textContent.indexOf(targetText) !== -1) {
+            var box = el.closest("div") || el;
+            box.style.display = "none";
+            hidden = true;
+          }
+        } catch (err) {
+          /* ignore */
+        }
+      });
+      return hidden;
+    }
+
+    var intervalId = setInterval(function () {
+      if (hideRealtimeToggle()) {
+        clearInterval(intervalId);
+      }
+    }, 400);
+    window.addEventListener("load", hideRealtimeToggle);
+  })();
+  </script>
+</body>
+</html>

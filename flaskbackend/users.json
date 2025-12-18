@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "song",
+      "password_hash": "scrypt:32768:8:1$oUn1crm75JffuylV$e0d10b03f299a9422adb1696d3ecce52a5555c3fef246e518258589f22347d3267ff59bade303daf40d7ac480d599d9673cf61a1e53863483d82aae3b8fcd202",
+      "role": "user",
+      "created_at": "2025-12-13T17:56:46"
+    }
+  ]
+}

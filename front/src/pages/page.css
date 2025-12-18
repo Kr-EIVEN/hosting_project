@@ -1,0 +1,472 @@
+/* =========================
+   Login Page – Bright / Professional / SaaS polish
+   (NO layout change: same positions, same structure)
+   ========================= */
+
+:root {
+  /* ✅ 전체 톤을 밝게 (네이비 -> 밝은 스카이블루/오프화이트) */
+  --bg0: #f6f8ff;
+  --bg1: #eef6ff;
+
+  /* ✅ 글래스 카드/스트로크를 라이트 모드로 */
+  --glass: rgba(255, 255, 255, 0.78);
+  --glass2: rgba(255, 255, 255, 0.62);
+  --stroke: rgba(15, 23, 42, 0.1);
+  --stroke2: rgba(15, 23, 42, 0.14);
+
+  /* ✅ 텍스트도 다크로 바꿔야 “밝고 전문적” 느낌 남 */
+  --text: rgba(15, 23, 42, 0.92);
+  --muted: rgba(15, 23, 42, 0.62);
+
+  /* ✅ 민트/블루 포인트 (과하지 않게) */
+  --green: #22c55e;
+  --green2: #10b981;
+  --blue: #3b82f6;
+  --orange: #f59e0b;
+
+  /* ✅ 라이트 모드 그림자 */
+  --shadow: 0 26px 70px rgba(15, 23, 42, 0.14);
+  --shadow2: 0 12px 28px rgba(15, 23, 42, 0.12);
+
+  --radius: 24px;
+  --radius2: 16px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 전체 배경 (밝은 SaaS 느낌) */
+.login-root {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(
+      900px 720px at 14% 22%,
+      rgba(59, 130, 246, 0.18),
+      transparent 60%
+    ),
+    radial-gradient(
+      820px 680px at 82% 26%,
+      rgba(16, 185, 129, 0.16),
+      transparent 62%
+    ),
+    radial-gradient(
+      950px 760px at 58% 92%,
+      rgba(245, 158, 11, 0.12),
+      transparent 64%
+    ),
+    linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 55%, var(--bg0) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 24px;
+  font-family: Inter, Pretendard, "Noto Sans KR", system-ui, -apple-system,
+    Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* 미세 그레인 */
+.login-root::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(15, 23, 42, 0.18) 1px,
+    transparent 0
+  );
+  background-size: 30px 30px;
+  opacity: 0.035;
+  mask-image: radial-gradient(
+    900px 640px at 52% 42%,
+    #000 55%,
+    transparent 78%
+  );
+}
+
+/* 소프트 블룸 */
+.login-root::after {
+  content: "";
+  position: absolute;
+  inset: -90px;
+  pointer-events: none;
+  background: radial-gradient(
+      700px 520px at 18% 22%,
+      rgba(59, 130, 246, 0.18),
+      transparent 62%
+    ),
+    radial-gradient(
+      680px 520px at 84% 26%,
+      rgba(16, 185, 129, 0.16),
+      transparent 62%
+    ),
+    radial-gradient(
+      860px 620px at 56% 92%,
+      rgba(245, 158, 11, 0.14),
+      transparent 66%
+    );
+  opacity: 0.55;
+  filter: blur(18px);
+}
+
+/* 대각형 배경 (라이트 톤 맞춤) */
+.lp-diagonal-outer {
+  position: absolute;
+  inset: -120px;
+  pointer-events: none;
+  opacity: 0.48;
+}
+
+.lp-diagonal-inner {
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  border-radius: 44px;
+}
+
+.lp-green-outer {
+  z-index: 0;
+}
+.lp-green-inner {
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.2),
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
+
+.lp-green-light-outer {
+  z-index: 0;
+  opacity: 0.36;
+}
+.lp-green-light-inner {
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.18),
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid rgba(34, 197, 94, 0.16);
+}
+
+.lp-orange-outer {
+  z-index: 0;
+  opacity: 0.34;
+}
+.lp-orange-inner {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.16),
+    rgba(255, 255, 255, 0)
+  );
+  border: 1px solid rgba(245, 158, 11, 0.14);
+}
+
+/* 왼쪽 설명 영역 (배치 유지 / 라이트 톤) */
+.left-info {
+  position: absolute;
+  left: 56px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  max-width: 420px;
+  color: var(--text);
+  user-select: none;
+}
+
+.left-info h1 {
+  margin: 0 0 12px 0;
+  font-size: 46px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 900;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.96),
+    rgba(15, 23, 42, 0.62)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 14px 40px rgba(15, 23, 42, 0.1);
+}
+
+.left-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.82);
+  letter-spacing: -0.01em;
+}
+
+.left-info p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(15, 23, 42, 0.62);
+  line-height: 1.6;
+}
+
+@media (max-width: 980px) {
+  .left-info {
+    position: static;
+    transform: none;
+    max-width: 560px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+}
+
+/* 프레임 (배치 유지) */
+.auth-frame {
+  width: min(980px, 100%);
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 카드 컨테이너 (라이트 글래스 카드) */
+.container {
+  position: relative;
+  width: min(520px, 100%);
+  min-height: 520px;
+  border-radius: var(--radius);
+  overflow: hidden;
+
+  background: radial-gradient(
+      900px 520px at 20% 8%,
+      rgba(255, 255, 255, 0.85),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px 520px at 86% 32%,
+      rgba(255, 255, 255, 0.55),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--glass), var(--glass2));
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* 카드 상단 얇은 컬러 라인 */
+.container::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 14px;
+  height: 2px;
+  border-radius: 999px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0),
+    rgba(59, 130, 246, 0.75),
+    rgba(16, 185, 129, 0.7),
+    rgba(245, 158, 11, 0.6),
+    rgba(59, 130, 246, 0)
+  );
+  opacity: 0.65;
+}
+
+/* 폼 영역 (배치 유지) */
+.container__form {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  padding: 40px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 800ms var(--ease), opacity 600ms var(--ease);
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form__title {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: rgba(15, 23, 42, 0.92);
+}
+
+/* 인풋 (라이트 + 고급) */
+.input {
+  width: 100%;
+  border-radius: 16px;
+  padding: 12px 14px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: rgba(15, 23, 42, 0.92);
+  outline: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+  transition: transform 200ms var(--ease), border 200ms var(--ease),
+    box-shadow 200ms var(--ease), background 200ms var(--ease);
+}
+
+.input::placeholder {
+  color: rgba(15, 23, 42, 0.45);
+}
+
+.input:focus {
+  border-color: rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 0 7px rgba(59, 130, 246, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.78) inset;
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* 메인 버튼 (민트→블루, 라이트에서도 선명) */
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 900;
+  cursor: pointer;
+  color: #06131f;
+  background: linear-gradient(90deg, #10b981, #3b82f6);
+  box-shadow: 0 18px 44px rgba(59, 130, 246, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.45) inset;
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease),
+    filter 220ms var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 26px 64px rgba(59, 130, 246, 0.22),
+    0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  filter: brightness(1.03);
+}
+
+.btn:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 구분선 */
+.form .divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(15, 23, 42, 0.16),
+    transparent
+  );
+  margin: 8px 0;
+}
+
+/* Signin/Signup 전환 (유지) */
+.container--signin {
+  transform: translateX(0%);
+  opacity: 1;
+  z-index: 2;
+}
+.container--signup {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+.container.right-panel-active .container--signin {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.container.right-panel-active .container--signup {
+  transform: translateX(0%);
+  opacity: 1;
+  z-index: 3;
+}
+
+/* 오버레이 */
+.container__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.overlay__panel {
+  padding: 18px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+/* 오버레이 버튼 (라이트 글래스 버튼) */
+.overlay__panel .btn {
+  width: auto;
+  min-width: 140px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: rgba(15, 23, 42, 0.86);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: var(--shadow2), 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.overlay__panel .btn:hover {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(15, 23, 42, 0.16);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14),
+    0 1px 0 rgba(255, 255, 255, 0.78) inset;
+}
+
+/* 패널 위치(유지) */
+.overlay--left {
+  justify-content: flex-start;
+  padding-left: 18px;
+}
+.overlay--right {
+  justify-content: flex-end;
+  padding-right: 18px;
+}
+
+/* 비밀번호 찾기 링크 (지금 JS에서 color를 #4b5563으로 박아놔서 어두워보였음)
+   -> !important로 라이트 톤에 맞게 덮어씀 */
+.container--signin button[type="button"] {
+  transition: opacity 160ms var(--ease), color 160ms var(--ease);
+  color: rgba(15, 23, 42, 0.62) !important;
+  text-decoration-color: rgba(15, 23, 42, 0.28) !important;
+}
+.container--signin button[type="button"]:hover {
+  opacity: 0.92;
+  color: rgba(15, 23, 42, 0.8) !important;
+  text-decoration-color: rgba(15, 23, 42, 0.42) !important;
+}
+
+/* 반응형 (유지) */
+@media (max-width: 980px) {
+  .auth-frame {
+    justify-content: center;
+  }
+  .container {
+    min-height: 560px;
+  }
+}
+
+/* 접근성 */
+@media (prefers-reduced-motion: reduce) {
+  .container__form,
+  .btn,
+  .input {
+    transition: none !important;
+  }
+}
